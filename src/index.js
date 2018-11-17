@@ -2,16 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class App extends React.Component {
-  //initialize the state in the constructor
-  constructor(props) {
-    // must call super in constructor or will get an error
-    super(props);
-    // THIS IS THE ONLY TIME we do a direct assignment to this.state
-    this.state = { lat: null, errorMessage: '' };
-  } //END constructor
-
   // One line way to init state without constructor
-  // !state = { lat: null, errorMessage: '' }
+  // THIS IS THE ONLY TIME we do a direct assignment to this.state
+  state = { lat: null, errorMessage: '' };
 
   /* API calls and data loading should be in life cycle methods (best practice
   not to do in constructor) not in the render method. The DOM will re-render
@@ -30,7 +23,7 @@ class App extends React.Component {
   } //END didMount
 
   /* React requires a render method in every class component.
-   render is ONLY for rendering JXS */
+  render is ONLY for rendering JXS */
   render() {
     //if error render error message
     if (this.state.errorMessage && !this.state.lat) {
@@ -48,6 +41,15 @@ class App extends React.Component {
 ReactDOM.render(<App />, document.querySelector('#root'));
 
 /*
+!How to initialize the state in the constructor
+ *constructor(props) {
+  must call super in constructor or will get an error
+   *super(props);
+   *this.state = { lat: null, errorMessage: '' };
+  *}
+*/
+
+/*
 ! Life cycle methods:
 *componentDidMount(){}
 - will run code once when component first loads
@@ -58,6 +60,7 @@ ReactDOM.render(<App />, document.querySelector('#root'));
 *componentWillUnmount(){}
 - will wait till component is on longer shown then will run code
 
+? Less common methods
 componentDidCatch
 componentWillReceiveProps
 componentWillUpdate
