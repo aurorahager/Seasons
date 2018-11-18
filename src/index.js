@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 class App extends React.Component {
-  // THIS IS THE ONLY TIME we do a direct assignment to this.state
   state = { lat: null, errorMessage: '' };
 
   // Get user's current location on mount
@@ -21,12 +21,12 @@ class App extends React.Component {
     if (this.state.errorMessage && !this.state.lat) {
       return <div> Error: {this.state.errorMessage}</div>;
     }
-    //if lat is given and no error, render lat
+    //if lat is given and no error, render SeasonDisplay
     if (!this.state.errorMessage && this.state.lat) {
       return <SeasonDisplay lat={this.state.lat} />;
     }
-    //if not above (ie no data), render loading
-    return <div>Loading...</div>;
+    //if not above (ie no data), render loading spinner
+    return <Spinner message="Please accept location request" />;
   } //END render
 } //END App component
 

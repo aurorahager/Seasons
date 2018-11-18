@@ -25,7 +25,7 @@ const getSeason = (lat, month) => {
   } // END if/else
 }; // END getSeason
 
-// component
+//  functional component to display text and icons for seasons
 const SeasonDisplay = props => {
   // get season with users lat and current month
   const season = getSeason(props.lat, new Date().getMonth());
