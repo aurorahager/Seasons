@@ -16,7 +16,8 @@ class App extends React.Component {
     ); //END geolocation
   } //END didMount
 
-  render() {
+  // helper function to avoid conditionals in render
+  renderContent = () => {
     //if error render, error message
     if (this.state.errorMessage && !this.state.lat) {
       return <div> Error: {this.state.errorMessage}</div>;
@@ -27,6 +28,10 @@ class App extends React.Component {
     }
     //if not above (ie no data), render loading spinner
     return <Spinner message="Please accept location request" />;
+  }; //END renderContent
+
+  render() {
+    return <div>{this.renderContent()}</div>;
   } //END render
 } //END App component
 
